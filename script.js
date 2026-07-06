@@ -1,17 +1,28 @@
 (function () {
   const CA = 'AlyciaBellapump';
 
-  // Floating petals
-  const petalsContainer = document.querySelector('.petals');
-  for (let i = 0; i < 18; i++) {
-    const petal = document.createElement('div');
-    petal.className = 'petal';
-    petal.style.left = Math.random() * 100 + '%';
-    petal.style.animationDuration = 12 + Math.random() * 18 + 's';
-    petal.style.animationDelay = Math.random() * 15 + 's';
-    petal.style.width = 6 + Math.random() * 6 + 'px';
-    petal.style.height = petal.style.width;
-    petalsContainer.appendChild(petal);
+  // Flying love icons
+  const loveContainer = document.querySelector('.love-float');
+  const heartSvg = '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>';
+  const heartOutlineSvg = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>';
+  const sparkSvg = '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l1.5 5.5L19 9l-5.5 1.5L12 16l-1.5-5.5L5 9l5.5-1.5L12 2z"/></svg>';
+
+  const colors = ['love-icon--rose', 'love-icon--deep', 'love-icon--gold', 'love-icon--blush'];
+  const motions = ['', 'love-icon--drift-left', 'love-icon--drift-right', 'love-icon--rise-fast', 'love-icon--sway'];
+  const icons = [heartSvg, heartSvg, heartSvg, heartOutlineSvg, sparkSvg];
+
+  for (let i = 0; i < 42; i++) {
+    const el = document.createElement('div');
+    const size = 10 + Math.random() * 22;
+    el.className = 'love-icon ' + colors[Math.floor(Math.random() * colors.length)] + ' ' + motions[Math.floor(Math.random() * motions.length)];
+    el.style.left = Math.random() * 100 + '%';
+    el.style.width = size + 'px';
+    el.style.height = size + 'px';
+    el.style.animationDuration = 10 + Math.random() * 20 + 's';
+    el.style.animationDelay = Math.random() * 20 + 's';
+    el.style.setProperty('--love-opacity', (0.2 + Math.random() * 0.35).toFixed(2));
+    el.innerHTML = icons[Math.floor(Math.random() * icons.length)];
+    loveContainer.appendChild(el);
   }
 
   // Header scroll
